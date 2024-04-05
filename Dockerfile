@@ -1,10 +1,19 @@
+FROM alpine AS build
+
+RUN apk add --no-cache gcc git libc-dev \
+  && git clone https://git.sr.ht/~rabbits/modal
+RUN mkdir /build
+RUN cd modal \
+  && cc src/modal.c -o /build/modal
+
+COPY eval /build/eval
+
+# /build
+
+
+
 FROM alpine
 
-WORKDIR "/uxnbot"
+COPY --from=build /build /bin
 
-COPY eval-uxn src .
-RUN apk add --no-cache gcc libc-dev \
-  && cc uxnasm.c -o /bin/uxnasm \
-  && cc uxnbot.c -o /bin/uxnbot
-
-ENTRYPOINT ["./eval-uxn"]
+ENTRYPOINT ["eval"]

@@ -1,13 +1,13 @@
 arch := $(shell uname -m)
-tag = booniepepper/uxnbot-discord:latest
+tag = booniepepper/modal:latest
 
 .PHONY: build
 build:
-	docker buildx build . -t $(tag) >build.log
+	docker buildx build . -t=$(tag) >build.log
 
 .PHONY: test
 test: build
-	docker run $(tag) "#01 #02 ADD"
+	docker run $(tag) modal hello.modal
 
 .PHONY: release
 release: build test

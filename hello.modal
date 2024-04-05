@@ -1,0 +1,5 @@
+<> (?x dup) (?x ?x)
+<> (?x ?y swap) (?y ?x)
+<> ( ?x pop) ()
+
+(1 2 3) (4 5 6) swap pop dup
