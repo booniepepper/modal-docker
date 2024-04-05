@@ -7,7 +7,7 @@ build:
 
 .PHONY: test
 test: build
-	docker run $(tag) modal hello.modal
+	docker run $(tag) eval "$(shell cat hello.modal)"
 
 .PHONY: release
 release: build test
