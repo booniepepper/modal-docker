@@ -3,7 +3,7 @@ tag = booniepepper/modal:latest
 
 .PHONY: build
 build:
-	docker buildx build . -t=$(tag) >build.log
+	docker buildx build --no-cache -t=$(tag) . >build.log
 
 .PHONY: test
 test: build
