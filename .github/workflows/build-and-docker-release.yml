@@ -3,8 +3,7 @@ name: build-and-docker-publish
 on:
   push:
     branches: [core]
-  schedule:
-    - cron: '*/5 * * * 0,6'
+  workflow_dispatch:
 
 jobs:
   build-and-docker-publish:
